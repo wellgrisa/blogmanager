@@ -48,8 +48,7 @@ $(function() {
 
           // finally, call quicksand
           $avatars.quicksand( $filteredData, {
-            duration: 800,
-            easing: 'easeInOutQuad'
+            
           });
 
 
@@ -63,8 +62,7 @@ $(function() {
 
           // finally, call quicksand
           $avatars.quicksand( $filteredData, {
-            duration: 800,
-            easing: 'easeInOutQuad'
+            
           });
 
 
