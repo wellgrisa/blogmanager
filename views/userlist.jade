@@ -6,13 +6,9 @@ block content
         a#bravi.btn.btn-default(href="#") Bravi
         a#people.btn.btn-default(href="#") People
         a#all.btn.btn-default(href="#") All
-    .row.well 
+    
       div                  
         ul#avatars.image-grid
           each user, i in userlist
-            li(data-id="#{i}" data-type="#{user.email}")
+            li(data-id="#{i}" data-type="#{user.sector}")
               img(src="/images/avatar/#{user.name}.png")
-        ul#destination(style="display:none")
-          li(data-id="o") B        
-          li(data-id="p") C
-          li(data-id="q") K

@@ -40,19 +40,7 @@ $(function() {
 
 
   // attempt to call Quicksand on every form change
-   $('#all').click(function(e) {    
-      
-            var $filteredData = $data.find('li');
-          
-
-
-          // finally, call quicksand
-          $avatars.quicksand( $filteredData, {
-            
-          });
-
-
-    });
+   
 
    $('#people').click(function(e) {    
       
@@ -62,7 +50,25 @@ $(function() {
 
           // finally, call quicksand
           $avatars.quicksand( $filteredData, {
-            
+            adjustHeight: 'dynamic',
+            duration: 800,
+              easing: 'swing'
+          });
+
+
+    });
+
+   $('#all').click(function(e) {    
+      
+            var $filteredData = $data.find('li');
+          
+
+
+          // finally, call quicksand
+          $avatars.quicksand( $filteredData, {
+            adjustHeight: 'dynamic',
+            duration: 800,
+              easing: 'swing'
           });
 
 
