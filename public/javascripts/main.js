@@ -11,6 +11,7 @@
       reversed: false,
       by: function(a) { return a.text(); }
     };
+    debugger;
     $.extend(options, customOptions);
     $data = $(this);
     arr = $data.get();
@@ -39,39 +40,69 @@ $(function() {
 
 
 
-  // attempt to call Quicksand on every form change
-   
+  
+  $('#bravi').click(function(e) {    
 
-   $('#people').click(function(e) {    
-      
-            var $filteredData = $data.find('li[data-type=' + 'people' + ']');
-          
+    var $filteredData = $data.find('li');
+
+    var $sortedData = $filteredData.sorted({
+      by: function(v) {        
+        return $(v).find('strong').text().toLowerCase();
+      }
+    });
+
+          // finally, call quicksand
+    $avatars.quicksand( $sortedData, {            
+      duration: 800,
+      easing: 'easeInOutQuad'
+    });
+
+
+  });
+
+  $('#women').click(function(e) {    
+
+    var $filteredData = $data.find('span[data-type=female]').closest('li');
+
+          // finally, call quicksand
+    $avatars.quicksand( $filteredData, {            
+      duration: 800,
+      easing: 'easeInOutQuad'
+    });
+
+
+  });
+
+
+
+  $('#people').click(function(e) {    
+
+    var $filteredData = $data.find('li[data-type=' + 'people' + ']');
+
 
 
           // finally, call quicksand
-          $avatars.quicksand( $filteredData, {
-            adjustHeight: 'dynamic',
+          $avatars.quicksand( $filteredData, {            
             duration: 800,
-              easing: 'swing'
+            easing: 'easeInOutQuad'
           });
 
 
-    });
+        });
 
-   $('#all').click(function(e) {    
-      
-            var $filteredData = $data.find('li');
-          
+  $('#all').click(function(e) {    
+
+    var $filteredData = $data.find('li');
+
 
 
           // finally, call quicksand
-          $avatars.quicksand( $filteredData, {
-            adjustHeight: 'dynamic',
+          $avatars.quicksand( $filteredData, {            
             duration: 800,
-              easing: 'swing'
+            easing: 'easeInOutQuad'
           });
 
 
-    });
+        });
 
 });

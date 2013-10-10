@@ -6,9 +6,13 @@ block content
         a#bravi.btn.btn-default(href="#") Bravi
         a#people.btn.btn-default(href="#") People
         a#all.btn.btn-default(href="#") All
+        a#women.btn.btn-default(href="#") Women
     .well
       div                  
         ul#avatars.image-grid
           each user, i in userlist
             li(data-id="#{i}" data-type="#{user.sector}")
-              img(src="/images/avatar/#{user.name}.png")
+              img(width="128" height="128" src="/images/avatar/#{user.name}.png")
+              strong= user.name
+              span(data-type="week")= i + 1 + " Week"
+              span(class="#{user.sex}")
