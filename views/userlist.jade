@@ -14,5 +14,6 @@ block content
             li(data-id="#{i}" data-type="#{user.sector}")
               img(width="128" height="128" src="/images/avatar/#{user.name}.png")
               strong= user.name
-              span(data-type="week")= i + 1 + " Week"
+              strong= user.topic
+              span(data-type="week")= user.week + " Week"
               span(class="#{user.sex}")

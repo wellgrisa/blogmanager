@@ -51,7 +51,7 @@ $(function() {
       }
     });
 
-          // finally, call quicksand
+          // finally, call quicksan
     $avatars.quicksand( $sortedData, {            
       duration: 800,
       easing: 'easeInOutQuad'
@@ -62,7 +62,7 @@ $(function() {
 
   $('#women').click(function(e) {    
 
-    var $filteredData = $data.find('span[data-type=female]').closest('li');
+    var $filteredData = $data.find('.female').closest('li');
 
           // finally, call quicksand
     $avatars.quicksand( $filteredData, {            
@@ -77,7 +77,7 @@ $(function() {
 
   $('#people').click(function(e) {    
 
-    var $filteredData = $data.find('li[data-type=' + 'people' + ']');
+    var $filteredData = $data.find('li[data-type=' + 'People' + ']');
 
 
 

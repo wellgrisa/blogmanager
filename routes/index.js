@@ -3,7 +3,7 @@
  * GET home page.
  */
 
-exports.index = function(req, res){
+ exports.index = function(req, res){
   res.render('index', { title: 'Express' });
 };
 
@@ -26,6 +26,10 @@ exports.newuser = function(req, res){
     res.render('newuser', { title: "Add new person" })
 }
 
+exports.send = function(request, callback) {
+
+}
+
 exports.adduser = function(db) {
     return function(req, res) {
 
@@ -33,8 +37,11 @@ exports.adduser = function(db) {
         var userName = req.body.name;
         var topic = req.body.topic;
         var sex = req.body.sex;
+        var sector = req.body.sector;
+        var week = req.body.week;
+        var email = req.body.email;
 
-        console.log(sex);
+        console.log(week);
 
         // Set our collection
         var collection = db.get('person');
@@ -43,7 +50,10 @@ exports.adduser = function(db) {
         collection.insert({
             "name" : userName,
             "topic" : topic,
-            "sex" : sex
+            "sex" : sex,
+            "sector" : sector,
+            "week" : week,
+            "email" : email,
         }, function (err, doc) {
             if (err) {
                 // If it failed, return error
@@ -59,3 +69,20 @@ exports.adduser = function(db) {
 
     }
 }
+
+
+var mailer = require('../app/mailers/base-mailer');
+/**
+ * Send Curriculum
+ */
+ exports.send = function(request, callback) {
+
+  mailer.smtpTransport.sendMail({
+    from: "wellington.grisa@gmail.com",
+    to: "wellington.grisa@gmail.com",
+    subject: "test",
+    html: "abc"
+    
+    }, callback);
+
+};

@@ -39,9 +39,8 @@ app.get('/mainpage', routes.mainpage);
 app.get('/userlist', routes.userlist(db));
 app.get('/newuser', routes.newuser);
 app.post('/adduser', routes.adduser(db));
+app.post('/sendemail', routes.send);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
-
-
