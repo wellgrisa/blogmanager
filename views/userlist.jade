@@ -3,16 +3,17 @@ extends layout
 block content
     .row.well
       .btn-group.btn-group-justified
-        a#bravi.btn.btn-default(href="#") Bravi
+        a#bravi.btn.btn-default(href="#") Name
         a#people.btn.btn-default(href="#") People
         a#all.btn.btn-default(href="#") All
         a#women.btn.btn-default(href="#") Women
+        a#add.btn.btn-primary(href="/newuser") Add        
     .well
       div                  
         ul#avatars.image-grid
           each user, i in userlist
             li(data-id="#{i}" data-type="#{user.sector}")
-              img(width="128" height="128" src="/images/avatar/#{user.name}.png")
+              img(width="128" height="128" data-toggle="popover" data-placement="bottom" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." data-original-title="#{user.name}" src="/images/avatar/#{user.name}.png")
               strong= user.name
               strong= user.topic
               span(data-type="week")= user.week + " Week"

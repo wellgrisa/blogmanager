@@ -32,6 +32,9 @@
 $(function() {
 
 
+  $("[data-toggle='popover']").popover();
+
+
   // get the first collection
   var $avatars = $('#avatars');
 
@@ -52,26 +55,27 @@ $(function() {
     });
 
           // finally, call quicksan
-    $avatars.quicksand( $sortedData, {            
-      duration: 800,
-      easing: 'easeInOutQuad'
-    });
+          $avatars.quicksand( $sortedData, {            
+            duration: 800,
+            easing: 'easeInOutQuad'
+          });
 
 
-  });
+        });
 
   $('#women').click(function(e) {    
 
     var $filteredData = $data.find('.female').closest('li');
 
           // finally, call quicksand
-    $avatars.quicksand( $filteredData, {            
-      duration: 800,
-      easing: 'easeInOutQuad'
-    });
+          $avatars.quicksand( $filteredData, {            
+            duration: 800,
+            easing: 'easeInOutQuad'
+          });
 
 
-  });
+        });
+
 
 
 
@@ -106,3 +110,5 @@ $(function() {
         });
 
 });
+
+
