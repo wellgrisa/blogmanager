@@ -31,8 +31,7 @@
 // DOMContentLoaded
 $(function() {
 
-
-  $("[data-toggle='popover']").popover();
+  $("[data-toggle='popover']").popover({ html : true });
 
 
   // get the first collection
@@ -109,6 +108,24 @@ $(function() {
 
         });
 
+
+  $('#btnAdd').click(function(e) {      
+    ajaxSave();
+  });
+
+  $('#btnEdit').click(function(e) {      
+    ajaxSave();
+  });
+
 });
 
-
+function ajaxSave () {
+  jQuery.ajax($('form').attr('action'), {
+    data : $('input').serialize(),
+    type : 'POST',
+    dataType: 'jsonp',
+  }
+  , function (data, textStatus, jqXHR) {
+    console.log("Post resposne:"); console.dir(data); console.log(textStatus); console.dir(jqXHR);
+  });
+}

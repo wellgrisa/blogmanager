@@ -10,10 +10,11 @@ var http = require('http');
 var path = require('path');
 
 var mongo = require('mongodb');
-var monk = require('monk');
-var db = monk('localhost:27017/blogmanager');
+var mongoose = require('mongoose');
 
 var app = express();
+
+mongoose.connect('mongodb://localhost:27017/blogmanager');
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -33,12 +34,19 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+var personController = require('./app/controllers/person-controller.js');
+app.post('/people', personController.post);
+app.put('/people/:id', personController.put);
+app.get('/people/list', personController.list);
+app.get('/people/create', personController.details);
+app.get('/people/:id', personController.details);
+
+
 app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/mainpage', routes.mainpage);
-app.get('/userlist', routes.userlist(db));
-app.get('/newuser', routes.newuser);
-app.post('/adduser', routes.adduser(db));
+// app.get('/userlist', routes.userlist(db));
+app.get('/newuser', routes.newuser); 
 app.post('/sendemail', routes.send);
 
 http.createServer(app).listen(app.get('port'), function(){

@@ -13,7 +13,7 @@ block content
         ul#avatars.image-grid
           each user, i in userlist
             li(data-id="#{i}" data-type="#{user.sector}")
-              img(width="128" height="128" data-toggle="popover" data-placement="bottom" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." data-original-title="#{user.name}" src="/images/avatar/#{user.name}.png")
+              img(width="128" height="128" data-toggle="popover" data-placement="bottom" data-content="&lt;a class='btn'&gt;This is your div content&lt;/a&gt;" src="/images/avatar/#{user.name}.png")
               strong= user.name
               strong= user.topic
               span(data-type="week")= user.week + " Week"
