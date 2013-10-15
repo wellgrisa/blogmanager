@@ -127,5 +127,7 @@ function ajaxSave () {
   }
   , function (data, textStatus, jqXHR) {
     console.log("Post resposne:"); console.dir(data); console.log(textStatus); console.dir(jqXHR);
+  }).done(function() {
+    window.location = '/people/list'
   });
 }
