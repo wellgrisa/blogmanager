@@ -54,3 +54,14 @@ body{
 .image-grid li strong{
   color:#282b2e
 }
+
+#sidebar {
+  background-color: #16a085;
+    height: 120%;
+    padding: 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 50px;
+    z-index: 2;
+}
