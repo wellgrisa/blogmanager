@@ -38,15 +38,19 @@ var personController = require('./app/controllers/person-controller.js');
 app.post('/people', personController.post);
 app.put('/people/:id', personController.put);
 app.get('/people/list', personController.list);
-app.get('/people/create', personController.details);
+app.get('/people', personController.details);
 app.get('/people/:id', personController.details);
+
+var topicController = require('./app/controllers/topic-controller.js');
+app.post('/topic', topicController.post);
+app.put('/topic/:id', topicController.put);
+app.get('/topic/list', topicController.list);
+app.get('/topic', topicController.details);
+app.get('/topic/:id', topicController.details);
 
 
 app.get('/', routes.index);
 app.get('/users', user.list);
-app.get('/mainpage', routes.mainpage);
-// app.get('/userlist', routes.userlist(db));
-app.get('/newuser', routes.newuser); 
 app.post('/sendemail', routes.send);
 
 http.createServer(app).listen(app.get('port'), function(){

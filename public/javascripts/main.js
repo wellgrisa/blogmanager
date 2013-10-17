@@ -117,10 +117,32 @@ $(function() {
     ajaxSave();
   });
 
+  $('#add-topic').click(function(){
+    $('#form-topics').append('<div class="form-group"><div class="col-lg-4"><select class="week form-control"><option value="1">1st Week</option><option value="2">2nd Week</option><option value="3">3rd Week</option><option value="4">4th Week</option><option value="5">5th Week        </option></select></div><div class="col-lg-6"><input id="inputTopic" type="text" placeholder="Topic" name="topic" value="" class="form-control"></div><div class="col-lg-2"><div class="btn-group btn-group-justified"><a id="save-topic" href="#" class="btn btn-info">Save</a><a id="delete-topic" href="#" class="btn btn-info">Delete</a></div></div></div>');
+  });
+
+  $('#abc').click(function(){
+
+    var data = $('input', '#form-topics').serializeArray();
+
+    data.push({ name : 'week', value : $('.week').val() });
+
+    jQuery.ajax('/topic', {
+      data : data,
+      type : 'POST',
+      dataType: 'jsonp',
+    }
+    , function (data, textStatus, jqXHR) {
+      console.log("Post resposne:"); console.dir(data); console.log(textStatus); console.dir(jqXHR);
+    }).done(function() {
+      window.location = '/people/list'
+    });
+  });
+
 });
 
 function ajaxSave () {
-  jQuery.ajax($('form').attr('action'), {
+  jQuery.ajax($('#form-person').attr('action'), {
     data : $('input').serialize(),
     type : 'POST',
     dataType: 'jsonp',
