@@ -142,8 +142,13 @@ $(function() {
 });
 
 function ajaxSave () {
+
+  var person = $('#form-person').serializeArray();  
+
+  person.push({ name : 'topics', value : [{ subject : $('#inputTopic').val(), week: $('.week').val() }] });
+
   jQuery.ajax($('#form-person').attr('action'), {
-    data : $('input').serialize(),
+    data : person,
     type : 'POST',
     dataType: 'jsonp',
   }
