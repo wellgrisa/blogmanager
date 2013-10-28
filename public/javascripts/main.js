@@ -118,7 +118,7 @@ $(function() {
   });
 
   $('#add-topic').click(function(){
-    $('#form-topics').append('<div class="form-group"><div class="col-lg-4"><select class="week form-control"><option value="1">1st Week</option><option value="2">2nd Week</option><option value="3">3rd Week</option><option value="4">4th Week</option><option value="5">5th Week        </option></select></div><div class="col-lg-6"><input id="inputTopic" type="text" placeholder="Topic" name="topic" value="" class="form-control"></div><div class="col-lg-2"><div class="btn-group btn-group-justified"><a id="save-topic" href="#" class="btn btn-info">Save</a><a id="delete-topic" href="#" class="btn btn-info">Delete</a></div></div></div>');
+    $('#form-topics').append('<div class="form-group"><div class="col-lg-4"><select class="week form-control"><option value="1">1st Week</option><option value="2">2nd Week</option><option value="3">3rd Week</option><option value="4">4th Week</option><option value="5">5th Week        </option></select></div><div class="col-lg-6"><input type="text" placeholder="Topic" name="subject" value="" class="form-control"></div><div class="col-lg-2"><div class="btn-group btn-group-justified"><a id="save-topic" href="#" class="btn btn-info">Save</a><a id="delete-topic" href="#" class="btn btn-info">Delete</a></div></div></div>');
   });
 
   $('#abc').click(function(){
@@ -141,20 +141,47 @@ $(function() {
 
 });
 
+function getTopics () {
+
+  var topicsGroup = $('.form-group', '#form-topics');
+
+  var topics = [];
+
+  for (var i = 0; i < topicsGroup.length; i++) {
+    topics.push({ 
+      id : $('[name="id"]', topicsGroup[i]).val(),
+      subject: $('[name="subject"]', topicsGroup[i]).val(),
+      week: $('.week', topicsGroup[i]).val()
+    });
+  };
+
+  return topics;
+}
+
 function ajaxSave () {
 
   var person = $('#form-person').serializeArray();  
 
-  person.push({ name : 'topics', value : [{ subject : $('#inputTopic').val(), week: $('.week').val() }] });
+  var topics = getTopics();
+
+  var topicsGroup = $('.form-group', '#form-topics');
+
+  person.push( {name : 'topics', value: topics } );
+
+  // for (var i = 0; i < topicsGroup.length; i++) {
+  //   person.push({ name: 'topics['+ i + '].id', value:  $('[name="id"]', topicsGroup[i]).val() });
+  //   person.push({ name: 'topics['+ i + '].subject', value:  $('[name="subject"]', topicsGroup[i]).val() });
+  //   person.push({ name: 'topics['+ i + '].week', value:  $('.week', topicsGroup[i]).val() });
+  // };
 
   jQuery.ajax($('#form-person').attr('action'), {
-    data : person,
+    data : JSON.stringify(person),
     type : 'POST',
-    dataType: 'jsonp',
+    dataType: 'json',
   }
   , function (data, textStatus, jqXHR) {
     console.log("Post resposne:"); console.dir(data); console.log(textStatus); console.dir(jqXHR);
   }).done(function() {
-    window.location = '/people/list'
+    // window.location = '/people/list'
   });
 }
